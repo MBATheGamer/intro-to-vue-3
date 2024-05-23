@@ -19,7 +19,9 @@ app.component("product-display", {
             <p v-else>Out of Stock</p>
 
             <p>Shipping: {{ shipping }}</p>
-            <product-details :details="details"></product-details>
+            <ul>
+              <li v-for="detail in details">{{ detail }}</li>
+            </ul>
             <div
               v-for="(variant, index) in variants"
               :key="variant.id"
@@ -78,7 +80,7 @@ app.component("product-display", {
       return this.variants[this.selectedVariant].image;
     },
     inStock() {
-      return this.variants[this.selectedVariant].quantity > 0;
+      return this.variants[this.selectedVariant].quantity;
     },
     shipping() {
       if (this.premium) {
